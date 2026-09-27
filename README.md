@@ -1,22 +1,24 @@
-# 📄 Automated Resume Generation Engine
+# 📄 Gerador Automático de Currículos
 
-Project focused on data collection, structuring, persistence, and processing for the generation of automated documents. The application uses a web interface to collect information, store it securely in a database, and feed a Python processing script on the back-end.
+Projeto focado na coleta, estruturação, persistência e processamento de dados para a geração automatizada de documentos[cite: 8]. A aplicação utiliza uma interface web para coletar informações, armazená-las com segurança em um banco de dados e alimentar um script de processamento em Python no back-end.
 
-## 🛠️ Technology Stack
-* **Back-End & Logic:** Python (Data processing and business rules)
-* **Database:** SQLite via Python (Data persistence, table modeling, and SQL queries)
-* **Front-End (Collection Interface):** HTML5, CSS3, JavaScript (DOM manipulation and dynamic forms)
+### 🛠️ Tecnologias Utilizadas
+* **Back-End & Lógica:** Python (Processamento de dados e regras de negócio).
+* **Banco de Dados:** SQLite via Python (Persistência de dados, modelagem de tabelas e consultas SQL).
+* **Front-End (Interface de Coleta):** HTML5, CSS3, JavaScript (Manipulação do DOM e formulários dinâmicos).
 
-## ⚙️ Project Status
-Under continuous development.
-- [x] Semantic structure and data collection forms (HTML5)
-- [x] Styling and responsiveness (CSS3)
-- [x] Logic for cloning multiple fields and validation (JavaScript)
-- [ ] Database modeling and data persistence (SQLite)
-- [ ] Data processing and export (Python)
+### ⚙️ Status do Projeto
+Em desenvolvimento contínuo[cite: 8].
 
-## 🎯 Engineering & Security Focus
-This repository demonstrates the ability to design an end-to-end application:
-1. Receiving dynamic data from the Front-End.
-2. Sanitizing and storing information in the Database (preventing SQL injections).
-3. Processing data on the server-side (Python) for the automated generation of the final document.
+- [x] Estrutura semântica e formulários de coleta de dados (HTML5)[cite: 8]
+- [x] Estilização e responsividade (CSS3)[cite: 8]
+- [x] Lógica para clonagem de múltiplos campos e validação (JavaScript)[cite: 8]
+- [ ] Modelagem do banco de dados e persistência de dados (SQLite)[cite: 8]
+- [ ] Processamento de dados e exportação (Python)[cite: 8]
+
+### 🎯 Foco em Engenharia & Segurança
+Este repositório demonstra a capacidade de projetar uma aplicação ponta a ponta[cite: 8]:
+
+1. Recebimento de dados dinâmicos a partir do Front-End[cite: 8].
+2. Sanitização e armazenamento de informações no Banco de Dados (prevenção contra SQL Injection)[cite: 8].
+3. Processamento de dados no lado do servidor (Python) para a geração automatizada do documento final[cite: 8].
