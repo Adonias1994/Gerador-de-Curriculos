@@ -8,7 +8,7 @@ Projeto focado na coleta, estruturação, persistência e processamento de dados
 * **Front-End (Interface de Coleta):** HTML5, CSS3, JavaScript (Manipulação do DOM e formulários dinâmicos).
 
 ### ⚙️ Status do Projeto
-Em desenvolvimento contínuo[cite: 8].
+Em desenvolvimento contínuo.
 
 - [x] Estrutura semântica e formulários de coleta de dados (HTML5).
 - [x] Estilização e responsividade (CSS3).
