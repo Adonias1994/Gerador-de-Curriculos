@@ -1,4 +1,4 @@
-# 📄 Gerador Automático de Currículos
+# 📄 Gerador de Currículos
 
 Projeto focado na coleta, estruturação, persistência e processamento de dados para a geração automatizada de documentos. A aplicação utiliza uma interface web para coletar informações, armazená-las com segurança em um banco de dados e alimentar um script de processamento em Python no back-end.
 
