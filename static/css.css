@@ -1,0 +1,166 @@
+/* Definindo as cores principais do projeto (Modo Escuro / Tech) */
+:root {
+    --cor-fundo: #0f172a;      /* Azul muito escuro (quase preto) */
+    --cor-painel: #1e293b;     /* Azul escuro para os cartões */
+    --cor-texto: #f8fafc;      /* Branco acinzentado */
+    --cor-destaque: #3b82f6;   /* Azul claro vibrante */
+    --cor-borda: #334155;      /* Cinza escuro para bordas */
+    --cor-sucesso: #10b981;    /* Verde para o botão final */
+}
+
+/* Reset básico para garantir que fique igual em todos os navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto; /* Centraliza a aplicação na tela */
+    background-color: var(--cor-painel);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    text-align: center;
+    color: var(--cor-destaque);
+    margin-bottom: 10px;
+}
+
+p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #94a3b8;
+}
+
+/* Estilo dos Blocos do Formulário (Dados Pessoais, Experiência, etc) */
+fieldset {
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 25px;
+    background-color: #0f172a;
+}
+
+legend {
+    background-color: var(--cor-destaque);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Estilo das Labels e Inputs */
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="url"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 4px;
+    background-color: var(--cor-painel);
+    color: var(--cor-texto);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+/* Efeito ao clicar no campo (Fica com a borda azul) */
+input:focus, textarea:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+}
+
+/* Grid para o Endereço (Fica lado a lado no PC e empilha no celular) */
+.grupo-endereco {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 15px;
+}
+
+/* Checkbox alinhado (Trabalho atual) */
+.checkbox-alinhado {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.checkbox-alinhado input {
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.checkbox-alinhado label {
+    margin-top: 0;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: var(--cor-borda);
+    margin: 20px 0;
+}
+
+/* Base para os Botões */
+button {
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+/* Botão de adicionar (+ experiências) */
+.btn-adicionar {
+    background-color: transparent;
+    color: var(--cor-destaque);
+    border: 1px dashed var(--cor-destaque);
+    padding: 10px 15px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.btn-adicionar:hover {
+    background-color: rgba(59, 130, 246, 0.1);
+}
+
+/* Botão principal de enviar */
+.btn-submit {
+    background-color: var(--cor-sucesso);
+    color: white;
+    padding: 15px;
+    width: 100%;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: #059669;
+}
+
+/* Responsividade: Telas menores que 600px (Celulares) */
+@media (max-width: 600px) {
+    .grupo-endereco {
+        grid-template-columns: 1fr; /* Coloca os campos de endereço um embaixo do outro no telemóvel */
+    }
+}
