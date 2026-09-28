@@ -1,24 +1,17 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import sqlite3
+import io
+from weasyprint import HTML
 
-# Inicializa a aplicação Flask
 app = Flask(__name__)
 
 # ==========================================
-# CONFIGURAÇÃO DO BANCO DE DADOS (SQLite)
+# CONFIGURAÇÃO DO BANCO DE DADOS
 # ==========================================
 def iniciar_banco():
-    """
-    Função para criar o banco de dados e a tabela caso não existam.
-    """
-    # Conecta ao arquivo do banco (se não existir, o Python cria automaticamente)
+    # Agora o banco será criado no local exato onde o app.py for executado
     conexao = sqlite3.connect('curriculos.db')
     cursor = conexao.cursor()
-
-    # Criação da tabela de Dados Pessoais usando instrução SQL.
-    # Em uma modelagem completa de banco relacional, criaríamos tabelas separadas 
-    # para 'Experiencias' e 'Formacoes' (Relacionamento 1 para N). 
-    # Para começarmos, vamos salvar os dados principais.
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS candidatos (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,68 +22,65 @@ def iniciar_banco():
             portfolio TEXT
         )
     ''')
-    
     conexao.commit()
     conexao.close()
 
-# Executa a função para garantir que o banco está pronto ao iniciar o app
 iniciar_banco()
 
 # ==========================================
-# ROTAS DA APLICAÇÃO (A ponte Front/Back)
+# ROTAS DA APLICAÇÃO
 # ==========================================
-
-# 1. Rota principal: Quando o usuário acessa o site (GET)
 @app.route('/')
 def index():
-    # O Flask procura automaticamente na pasta /templates
     return render_template('index.html')
 
-# 2. Rota de processamento: Quando o formulário é enviado (POST)
 @app.route('/gerar-curriculo', methods=['POST'])
 def gerar_curriculo():
-    # Coletando os dados simples que vieram do atributo 'name' do HTML
+    # 1. Coletando os dados do formulário Front-End
     nome = request.form.get('nome')
     email = request.form.get('email')
     telefone = request.form.get('telefone')
     linkedin = request.form.get('linkedin')
     portfolio = request.form.get('portfolio')
-    
-    # Coletando os campos dinâmicos (listas criadas pelo seu botão clonar no JS)
-    # request.form.getlist() pega todos os inputs que têm o mesmo name (ex: name="empresa[]")
     empresas = request.form.getlist('empresa[]')
     cargos = request.form.getlist('cargo[]')
     
-    # ==========================================
-    # PERSISTÊNCIA E SEGURANÇA NO BANCO DE DADOS
-    # ==========================================
+    # 2. Salvando no Banco de Dados
     conexao = sqlite3.connect('curriculos.db')
     cursor = conexao.cursor()
-
-    # Inserção de dados utilizando "Parameterized Queries" (os sinais de interrogação ?).
-    # Esta é uma prática fundamental de defesa (Blue Team/Sec) para evitar ataques de SQL Injection.
-    # Nunca concatene strings diretamente na instrução SQL.
     cursor.execute('''
         INSERT INTO candidatos (nome, email, telefone, linkedin, portfolio)
         VALUES (?, ?, ?, ?, ?)
     ''', (nome, email, telefone, linkedin, portfolio))
-    
     conexao.commit()
     conexao.close()
 
-    # Log no terminal apenas para visualização de que o back-end recebeu as listas de experiência
-    print(f"\n--- Novo Currículo Recebido ---")
-    print(f"Nome: {nome} | E-mail: {email}")
-    print(f"Empresas cadastradas: {empresas}")
-    print(f"Cargos cadastrados: {cargos}")
-    print("-------------------------------\n")
+    # 3. GERAÇÃO DINÂMICA (Criando o PDF)
+    # Utilizamos o zip() para juntar as duas listas (empresas e cargos) formando pares (Ex: [('Contax', 'Atendente')])
+    experiencias = zip(empresas, cargos)
+    
+    # O Flask preenche o HTML modelo com as variáveis do usuário
+    html_renderizado = render_template('curriculo_modelo.html',
+                                       nome=nome,
+                                       email=email,
+                                       telefone=telefone,
+                                       linkedin=linkedin,
+                                       portfolio=portfolio,
+                                       experiencias=experiencias)
 
-    # Retorno temporário para o usuário (aqui no futuro entrará a lógica de gerar o PDF/Word)
-    return f"<h1>Sucesso!</h1><p>Os dados de {nome} foram salvos com segurança no banco de dados SQLite!</p>"
+    # O WeasyPrint lê o HTML preenchido e converte para PDF na memória do servidor (sem salvar arquivo no disco)
+    pdf = HTML(string=html_renderizado).write_pdf()
 
-# ==========================================
-# INICIALIZAÇÃO DO SERVIDOR
-# ==========================================
+    # Formata o nome do arquivo (ex: curriculo_Adonias_Pessoa.pdf)
+    nome_arquivo = f"curriculo_{nome.replace(' ', '_')}.pdf"
+
+    # 4. DOWNLOAD AUTOMÁTICO (Enviando para o navegador)
+    return send_file(
+        io.BytesIO(pdf),
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name=nome_arquivo
+    )
+
 if __name__ == '__main__':
-    # O modo debug=True recarrega o servidor sozinho se você alterar o código
     app.run(debug=True)

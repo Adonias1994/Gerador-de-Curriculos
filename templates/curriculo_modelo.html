@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Currículo</title>
+    <style>
+        /* Estilos específicos para a impressão do PDF */
+        body { font-family: 'Helvetica', 'Arial', sans-serif; margin: 40px; color: #333; }
+        .cabecalho { border-bottom: 2px solid #2c3e50; padding-bottom: 10px; margin-bottom: 20px; }
+        h1 { color: #2c3e50; margin-bottom: 5px; }
+        .contato { font-size: 14px; margin: 3px 0; color: #555; }
+        .secao { margin-top: 30px; }
+        .secao h2 { color: #2980b9; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; }
+        .experiencia-item { margin-bottom: 15px; }
+        .experiencia-item strong { display: block; font-size: 16px; color: #2c3e50; }
+        .experiencia-item span { font-size: 14px; color: #555; }
+    </style>
+</head>
+<body>
+    <div class="cabecalho">
+        <h1>{{ nome }}</h1>
+        <p class="contato"><strong>E-mail:</strong> {{ email }} | <strong>Telefone:</strong> {{ telefone }}</p>
+        {% if linkedin %}<p class="contato"><strong>LinkedIn:</strong> {{ linkedin }}</p>{% endif %}
+        {% if portfolio %}<p class="contato"><strong>Portfólio:</strong> {{ portfolio }}</p>{% endif %}
+    </div>
+
+    <div class="secao">
+        <h2>Experiência Profissional</h2>
+        <!-- O loop abaixo percorre as listas de empresas e cargos enviadas pelo Python -->
+        {% for empresa, cargo in experiencias %}
+        <div class="experiencia-item">
+            <strong>{{ empresa }}</strong>
+            <span>{{ cargo }}</span>
+        </div>
+        {% else %}
+        <p>Nenhuma experiência profissional informada.</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
