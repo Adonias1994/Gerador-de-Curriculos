@@ -1,6 +1,10 @@
 # 📄 Gerador de Currículos
 
-Projeto focado na coleta, estruturação, persistência e processamento de dados para a geração de documento (currículo). A aplicação utiliza uma interface web para coletar informações, armazená-las com segurança em um banco de dados e alimentar um script de processamento em Python no back-end.
+Inicialmente tentei desenvolver o projeto acelerando os códigos com Inteligência Artificial, o que foi bom até certo ponto. Porém o retorno do arquivo em PDF não foi satisfatório, pois apresentava um erro que não vinha com todas as informações no currículo.
+
+Tentei corrigir, mas o código se tornou confuso e de difícil manutenção. Por esse motivo, decidi recomeçar o projeto do zero com o código sendo feito 100% por mim.
+
+A ideia é ter uma página onde é preenchida as informações e obter o currículo em PDF.
 
 ### 🛠️ Tecnologias Utilizadas
 * **Back-End & Lógica:** Python (Processamento de dados e regras de negócio).
@@ -10,20 +14,13 @@ Projeto focado na coleta, estruturação, persistência e processamento de dados
 ### ⚙️ Status do Projeto
 Em desenvolvimento contínuo.
 
-- [Em andamento...] Estrutura semântica e formulários de coleta de dados (HTML5).
-- [ ] Estilização e responsividade (CSS3).
-- [ ] Interação (JavaScript).
-- [ ] Modelagem do banco de dados e persistência de dados (SQLite).
-- [ ] Processamento de dados e exportação (Python).
+- [...] Estrutura semântica e formulários de coleta de dados (HTML5).
+- [] Estilização e responsividade (CSS3).
+- [] Lógica para clonagem de múltiplos campos e validação (JavaScript).
+- [] Modelagem do banco de dados e persistência de dados (SQLite).
+- [] Processamento de dados e exportação (Python).
 
-### 🎯 Foco em Engenharia & Segurança
-Este repositório demonstra a capacidade de projetar uma aplicação ponta a ponta:
-
-1. Recebimento de dados dinâmicos a partir do Front-End.
-2. Sanitização e armazenamento de informações no Banco de Dados (prevenção contra SQL Injection).
-3. Processamento de dados no lado do servidor (Python) para a geração automatizada do documento final.
-
-### -> Para executar em Windows
+### -> Para executar em Windows (quando pronto)
 
 Abra o terminal (ou prompt de comando) na pasta raiz do seu projeto.
 
