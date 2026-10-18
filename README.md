@@ -1,6 +1,6 @@
 # 📄 Gerador de Currículos
 
-Projeto focado na coleta, estruturação, persistência e processamento de dados para a geração automatizada de documentos. A aplicação utiliza uma interface web para coletar informações, armazená-las com segurança em um banco de dados e alimentar um script de processamento em Python no back-end.
+Projeto focado na coleta, estruturação, persistência e processamento de dados para a geração de documento (currículo). A aplicação utiliza uma interface web para coletar informações, armazená-las com segurança em um banco de dados e alimentar um script de processamento em Python no back-end.
 
 ### 🛠️ Tecnologias Utilizadas
 * **Back-End & Lógica:** Python (Processamento de dados e regras de negócio).
@@ -10,11 +10,11 @@ Projeto focado na coleta, estruturação, persistência e processamento de dados
 ### ⚙️ Status do Projeto
 Em desenvolvimento contínuo.
 
-- [x] Estrutura semântica e formulários de coleta de dados (HTML5).
-- [x] Estilização e responsividade (CSS3).
-- [x] Lógica para clonagem de múltiplos campos e validação (JavaScript).
-- [x] Modelagem do banco de dados e persistência de dados (SQLite).
-- [x] Processamento de dados e exportação (Python).
+- [Em andamento...] Estrutura semântica e formulários de coleta de dados (HTML5).
+- [ ] Estilização e responsividade (CSS3).
+- [ ] Interação (JavaScript).
+- [ ] Modelagem do banco de dados e persistência de dados (SQLite).
+- [ ] Processamento de dados e exportação (Python).
 
 ### 🎯 Foco em Engenharia & Segurança
 Este repositório demonstra a capacidade de projetar uma aplicação ponta a ponta:
